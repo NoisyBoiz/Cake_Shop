@@ -1,0 +1,103 @@
+.userPage{
+    margin: 0rem 0;
+}
+.user-show-infor{
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    padding: 2rem 6rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: fit-content;
+    margin: 0 auto;
+    background-color: rgba(255, 0, 72, 0.05);
+    ul{
+        margin: 2rem 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1rem;
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        justify-content: center;
+        align-items: center;
+    }
+    li:nth-child(odd){
+        font-weight: bold;
+    }
+}
+.btn-change-infor{
+    width: 80%;
+    margin: 1rem 0 0 0;
+    padding: 0.4rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: rgb(203, 30, 114);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 600;
+    color: white;
+}
+
+.btn-change-password{
+    width: 80%;
+    margin: 0.5rem 0 0 0;
+    padding: 0.4rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: rgb(203, 30, 114);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 600;
+    color: white;
+}
+
+.user-change-infor, .user-change-password{
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    padding: 2rem 6rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: fit-content;
+    margin: 0 auto;
+    background-color: rgba(255, 0, 72, 0.05);
+    h1{
+        margin: 0 0 2rem 0;
+    }
+}
+
+.user-form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    justify-content: center;
+    align-items: center;
+    label{
+        font-weight: bold;
+        font-size: clamp(0.8rem, 4vw, 1rem);
+    }
+    input{
+        padding: 0.4rem 0.5rem;
+        border-radius: 0.4rem;
+        border: 1px solid rgb(240, 118, 177);
+    }
+}
+
+.btn-user-group{
+    margin: 1rem 0 0 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    button{
+        width: 100%;
+        margin: 1rem 0 0 0;
+        padding: 0.4rem 1rem;
+        border-radius: 0.5rem;
+        border: none;
+        background-color: rgb(203, 30, 114);
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        font-weight: 600;
+        color: white;
+    }
+}

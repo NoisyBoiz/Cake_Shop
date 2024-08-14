@@ -1,0 +1,168 @@
+.list-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.list-table{
+    width: 90%;
+}
+
+.list-table li{
+    text-align: center;
+    border: 0.05rem solid rgb(255, 255, 255);
+    padding: 0.3rem 0;
+    font-size: clamp(0.8rem, 4vw, 1rem)
+}
+.list-row:nth-child(even){
+    background-color: rgb(240, 240, 240);
+}
+.list-row:nth-child(odd){
+    background-color: rgb(253, 228, 235);
+}
+
+.list-header li{
+    background-color: rgb(255, 182, 205);
+    color: rgb(100, 100, 100);
+    font-weight: 600;
+}
+
+.add-data{
+    width: clamp(2rem, 4vw, 2.5rem);
+    height: clamp(2rem, 4vw, 2.5rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 2rem;
+    right: 1rem;
+    background-color: rgb(224, 0, 90);
+    color: #ffffff;
+    font-size: clamp(0.8rem, 4vw, 1.5rem);
+    border-radius: 0.5rem;
+}
+
+.list-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 2rem auto 1rem auto;
+}
+
+.list-box-search{
+    padding: 0.3rem;
+    width: 20%;
+    background-color: rgb(255, 234, 241);
+    border: 0.05rem solid rgb(255, 182, 205);
+}
+
+/* ######## */
+/* Admin */
+/* ######## */
+
+.list-header-admin,.list-row-admin{
+    display: grid;
+    grid-template-columns: 10% 20% 25% 25% 10% 10%;
+}
+
+/* ######## */
+/* Client */
+/* ######## */
+
+.list-header-client,.list-row-client{
+    display: grid;
+    grid-template-columns: 9% 15% 15% 15% 15% 15% 8% 8%;
+}
+/* ######## */
+/* Category */
+/* ######## */
+
+.list-header-category,.list-row-category{
+    display: grid;
+    grid-template-columns: 20% 60% 10% 10%;
+}
+
+/* ######## */
+/* Cake */
+/* ######## */
+
+.list-header-cake,.list-row-cake{
+    display: grid;
+    grid-template-columns: 3% 7% 20% 20% 20% 20% 5% 5%;
+}
+
+.header-list-cake-size ,.list-cake-size{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.list-cake-size li{
+    margin: 0.1rem;
+}
+
+.list-cake-image li{
+    margin: 0.1rem;
+    word-break: break-all;
+    text-align: left;
+}
+
+/* ######## */
+/* Bill */
+/* ######## */
+
+.list-header-bill,.list-row-bill{
+    display: grid;
+    grid-template-columns: 10% 10% 30% 15% 15% 10% 5% 5%;
+}
+
+/* ######## */
+/* Order */
+/* ######## */
+
+.list-header-order,.list-row-order{
+    display: grid;
+    grid-template-columns: 10% 10% 20% 20% 20% 10% 10%;
+}
+
+.empty-data{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+.empty-data-content, .notfound-data-content{
+    display: grid;
+    grid-template-columns: fit-content(100%) 1fr;
+    justify-content: center;
+    align-items: center;
+    column-gap: 2rem;
+    svg{
+        font-size: clamp(5rem, 20vw, 10rem);
+    }
+    h1{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        font-weight: 600;
+        color: rgb(224, 0, 90);
+        margin: 0;
+        padding: 0;
+    }
+    p{
+        font-size: clamp(1rem, 4vw, 1.5rem);
+        font-weight: 400;
+        color: rgb(129, 129, 129);
+        margin: 0;
+        padding: 0;
+    }
+}
+.notfound-data{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}

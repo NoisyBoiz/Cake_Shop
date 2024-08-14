@@ -1,0 +1,86 @@
+.main-content{
+    padding-top: 5rem;
+}
+
+.cakes__header--content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    z-index: 10;
+    width: 100%;
+    height: 5rem;
+    animation: 0.5s ease 0s 1 normal none running slide-down;
+    background-color: var(--primary-color);
+}
+
+.cakes__header--content__image{
+    padding: 0 10px 0 10px;
+    margin: 0 auto;
+    width: 100px;
+
+}
+.image__logo{
+    width: 65px;
+    object-fit: cover;
+    opacity: 1;
+    margin-left: 20px;
+    margin: 10px;
+}
+
+.cakes__header--content__body{
+    margin: auto;
+}
+
+.cakes__header--content__category{
+    padding: 0 clamp(0.5rem, 4vw, 1rem);
+    flex:1;
+    display: flex;
+    margin: auto;
+    font-weight: bold;
+    font-size: clamp(0.8rem, 4vw, 1.3rem);
+    margin-right: 100px;
+    color: rgb(255, 251, 251);
+}
+
+.cakes__header--content__category a:hover{
+    color: #4c4c4c;
+}
+
+.cakes__header--link{
+    padding: 10px;
+    margin-left: 20px;
+}
+
+.header-login{
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2rem 0 0;
+}
+.header-user-name{
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: clamp(0.8rem, 4vw, 1.3rem);
+}
+.header-login button{
+    color: rgb(184, 18, 82);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: clamp(0.8rem, 4vw, 1.2rem);
+    padding:  0.2rem 0.8rem 0.2rem 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+}
+
+.navbar-target{
+    color: #525252;
+}

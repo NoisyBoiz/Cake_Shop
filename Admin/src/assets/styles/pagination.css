@@ -1,0 +1,144 @@
+.pagination-container{
+    width: 100%;
+    margin: 2rem 0 1rem 0;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-pre-pagination,.btn-next-pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    margin: 0 0.4rem;
+    border: none;
+    border-radius: 50%;
+    font-size: 1rem;
+    font-weight: 900;
+    color: rgb(255, 255, 255);
+    background-color: rgb(225, 0, 90);
+    transition: background-color 0.2s ease-in-out,color 0.2s ease-in-out;
+    cursor: pointer;
+}
+.btn-pre-pagination:disabled,.btn-next-pagination:disabled{
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 206, 226);
+    cursor: not-allowed;
+}
+.index-pagination{
+    width: fit-content;
+    background-color: rgb(255, 156, 195);
+    border-radius: 0.8rem;
+    padding: 0.4rem;
+}
+.index-pagination button{
+    margin: 0 0.2rem; 
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.4rem;
+    color: rgb(255, 255, 255);
+    transition: background-color 0.3s ease-in-out;
+  
+}
+/* .index-pagination button:nth-child(1){
+    margin: 0 0.2rem 0 0; 
+}
+.index-pagination button:nth-last-child(1){
+    margin: 0 0 0 0.2rem; 
+} */
+.focus-btn-pagination{
+    background-color: rgb(225, 0, 90);
+}
+.unfocus-btn-pagination{
+    background-color: transparent;
+    cursor: pointer;
+}
+.input-pagination{
+    height: 2rem;
+    padding: 0.2rem 0.4rem;
+    background-color: rgb(255, 169, 203);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
+    border-radius: 0.5rem;
+}
+.input-pagination input{
+    width: 3rem;
+    padding: 0.2rem;
+    font-size: 1rem;
+    background-color: rgb(234, 103, 156);
+    border: none;
+    border-radius: 0.3rem;
+    color: rgb(255, 255, 255);
+    transition: background-color 0.3s ease-in-out;
+}
+.input-pagination input:focus{
+    background-color: rgba(255, 0, 60, 0.6);
+    outline: none;
+}
+.input-pagination input::-webkit-outer-spin-button,
+.input-pagination input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.input-pagination span{
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding-left: 0.3rem;
+    color: var(--colorRed);
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 100%;
+	}
+	100% {
+		background-position: 0% 0%;
+	}
+}
+@keyframes loadCard{
+    0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@media screen and (max-width: 1024px){
+    :root{
+        --widthCardCommon: 15vw;
+    }
+    .topCommonContainer{
+        grid-template-columns: repeat(4,25%);
+    }
+}
+@media screen and (max-width: 760px){
+    :root{
+        --widthCardCommon: 26vw;
+    }
+    .topCommonContainer{
+        grid-template-columns: repeat(3,calc(100% / 3));
+    }
+}
+@media screen and (max-width: 480px){
+    :root{
+        --widthCardCommon: 38vw;
+    }
+    .topCommonContainer{
+        grid-template-columns: repeat(2,calc(100% / 2));
+    }
+}
+@media screen and (max-width: 360px){
+    :root{
+        --widthCardCommon: 50vw;
+    }
+    .topCommonContainer{
+        grid-template-columns: 100%;
+    }
+}

@@ -1,0 +1,119 @@
+:root{
+    --color-line: rgb(200, 200, 200);
+}
+
+
+.graph-container{
+    width: 40rem;
+    height: 25rem;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    padding: 2rem 3rem 2rem 6rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.4);
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+    ul{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    li{
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.graph-title{
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+    h1{
+        font-size: clamp(0.8rem, 4vw, 1rem);
+    }
+}
+
+.graph-box{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.graph-left{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+}
+
+.level-item{
+    width: 100%;
+    height: 100%;
+    border-top: 0.05rem solid var(--color-line);
+}
+
+.level-item:nth-last-child(1){
+    border-bottom: 0.05rem solid var(--color-line);
+}
+
+.level-value{
+    font-weight: 600;
+    width: fit-content;
+    transform: translate(-120%, -50%);
+}
+
+.level-value-0{
+    position: absolute;
+    bottom: 0;
+    transform: translate(-150%, 50%);
+    font-weight: 600;
+}
+
+.graph-right{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.bar-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+}
+
+.bar-item{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    transition: all 0.5s ease-in-out;
+    p{
+        height: 0;
+        transform: translateY(-1.2rem);
+    }
+}
+
+.bar-fill{
+    width: 50%;
+    background-color: #e54276;
+}
+
+.label-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+    li{
+        width: 100%;
+        text-align: center;
+    }
+}
+

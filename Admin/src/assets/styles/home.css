@@ -1,0 +1,43 @@
+.home-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    padding: 4rem;
+}
+
+.best-seller{
+    display: grid;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2rem;
+    img{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.best-seller-infor{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.4);
+    border-radius: 2rem;
+    overflow: hidden;
+    h1{
+        font-size: 2rem;
+        font-weight: 600;
+    }
+    p{
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+    div{
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    h1{
+        color: #e54276;
+    }
+}
