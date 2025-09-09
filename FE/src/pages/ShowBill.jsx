@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import "../assets/styles/showBill.css";
 import { getBillByClient } from "../services/bill";
-import Notification from './notication';
+import Notification from '../components/notication';
 
 const notication = new Notification();
 

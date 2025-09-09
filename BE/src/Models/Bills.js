@@ -6,7 +6,7 @@ export const Bills = (sequelize) => sequelize.define('Bills',{
         autoIncrement: true,
         primaryKey: true
     },
-    id_client: {
+    id_user: {
         type: DataTypes.BIGINT,
         allowNull: false
     },

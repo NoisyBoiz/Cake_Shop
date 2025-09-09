@@ -1,7 +1,5 @@
-import React from 'react'
-import { Fragment } from "react"
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Header() {
     const [user, setUser] = useState(null);

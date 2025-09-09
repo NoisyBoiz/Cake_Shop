@@ -2,10 +2,9 @@ import React, { Fragment } from 'react'
 import '../assets/styles/payment.css';
 import { useState } from "react";
 import  { createTotalBill } from "../services/bill";
-import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
-import Notification from './notication';
-import Load from './Load';
+import Notification from '../components/notication';
+import Load from '../components/Load';
 
 
 const notication = new Notification();
@@ -44,7 +43,7 @@ const Payment = () => {
   const submit = () => {
       setSend(true);
       let data = {};
-      data.id_client = user.id;
+      data.id_user = user.id;
       data.delivery_date = document.getElementById("delivery_date").value;
       data.notice = document.getElementById("notice").value;
       let list_order = [];

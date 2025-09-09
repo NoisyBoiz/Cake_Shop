@@ -25,7 +25,7 @@ function BillForm() {
                 console.log(rs.data);
                 const data = rs.data.data;
                 console.log(data)
-                document.querySelector("input[name='idClient']").value = data.id_client;
+                document.querySelector("input[name='idClient']").value = data.id_user;
                 document.querySelector("input[name='notice']").value = data.notice;
                 document.querySelector("input[name='deliveryDate']").value = convertDate(data.delivery_date);
                 document.querySelector("select[name='status']").selectedIndex = data.status;
@@ -40,7 +40,7 @@ function BillForm() {
         const status = Number(document.querySelector("select[name='status']").value);
         
         if(id==="-1"){
-            createBill({"id_client": idClient,"notice": notice, "delivery_date": deliveryDate, "status": status}).then(rs=>{
+            createBill({"id_user": idClient,"notice": notice, "delivery_date": deliveryDate, "status": status}).then(rs=>{
                 if(rs.data.status===200) {
                     notification.success({
                         title:"Tạo đơn hàng",
@@ -56,7 +56,7 @@ function BillForm() {
             });
         }
         else{
-            updateBill({"id":id,"id_client": idClient,"notice": notice, "delivery_date": deliveryDate, "status": status}).then(rs=>{
+            updateBill({"id":id,"id_user": idClient,"notice": notice, "delivery_date": deliveryDate, "status": status}).then(rs=>{
                 if(rs.data.status===200) {
                     notification.success({
                         title:"Câp nhật đơn hàng",

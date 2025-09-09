@@ -6,7 +6,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { useEffect, useState } from "react";
 import { getCakesByIdType } from "../services/product";
-import ProductItem from "./ProductItem";
+import ProductItem from "../components/ProductItem";
 
 const Products = ({handleOpenCart,type}) => {
     

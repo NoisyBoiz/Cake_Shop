@@ -1,80 +1,65 @@
+
 import express from "express";
-import ClientsController from "../Controllers/ClientsController.js";
+import UserController from "../Controllers/UserController.js";
+import { authenticateToken } from "../Utils/AuthMiddleware.js";
 
 const router = express.Router();
 
-router.get('/list', async (req, res) => {
-    await ClientsController.getAllClients().then((result) => {
-        res.status(result.status).send(result);
-    });
-});
-
-router.get('/getById', async (req, res) => {
-    const id = req.query.id;
-    await ClientsController.getClientById(id).then((result) => {
-        res.status(result.status).send(result);
-    });
-});
-
-router.get('/getByName', async (req, res) => {
-    const name = req.query.name;
-    await ClientsController.getClientByName(name).then((result) => {
-        res.status(result.status).send(result);
-    });
-});
-
-router.get('/getByPhoneNumber', async (req, res) => {
-    const phoneNumber = req.query.phoneNumber;
-    await ClientsController.getClientByPhoneNumber(phoneNumber).then((result) => {
-        res.status(result.status).send(result);
-    });
-});
-router.get('/getByAddress', async (req, res) => {
-    const address = req.query.address;
-    await ClientsController.getClientByAddress(address).then((result) => {
-        res.status(result.status).send(result);
-    }); 
-});
-
+// Route đăng ký
 router.post('/create', async (req, res) => {
-    const client = req.body;
-    await ClientsController.createClient(client).then((result) => {
+    const user = req.body;
+    await UserController.createUser(user).then((result) => {
         res.status(result.status).send(result);
     });
 });
 
-router.post('/update', async (req, res) => {
-    const client = req.body;
-    await ClientsController.updateClient(client).then((result) => {
-        res.status(result.status).send(result);
-    });
-});
-
-router.delete('/delete', async (req, res) => {
-    const id = req.query.id;
-    console.log(id);
-    await ClientsController.deleteClient(id).then((result) => {
-        res.status(result.status).send(result);
-    });
-});
-
+// Route đăng nhập
 router.post('/login', async (req, res) => {
-    const client = req.body;
-    await ClientsController.loginClient(client).then((result) => {
+    const user = req.body;
+    await UserController.loginUser(user).then((result) => {
         res.status(result.status).send(result);
     });
 });
 
-router.post('/changeInfor', async (req, res) => {   
-    const client = req.body;
-    await ClientsController.changeInfor(client).then((result) => {
+
+
+router.get('/list', authenticateToken, async (req, res) => {
+    await UserController.getAllUsers().then((result) => {
         res.status(result.status).send(result);
     });
 });
 
-router.post('/changePassword', async (req, res) => {
-    const client = req.body;
-    await ClientsController.changePassword(client).then((result) => {
+router.get('/getById', authenticateToken, async (req, res) => {
+    const id = req.query.id;
+    await UserController.getUserById(id).then((result) => {
+        res.status(result.status).send(result);
+    });
+});
+
+router.post('/update', authenticateToken, async (req, res) => {
+    const user = req.body;
+    await UserController.updateUser(user).then((result) => {
+        res.status(result.status).send(result);
+    });
+});
+
+router.delete('/delete', authenticateToken, async (req, res) => {
+    const id = req.query.id;
+    await UserController.deleteUser(id).then((result) => {
+        res.status(result.status).send(result);
+    });
+});
+
+router.post('/changeInfor', authenticateToken, async (req, res) => {
+    const user = req.body;
+    await UserController.changeInfor(user).then((result) => {
+        res.status(result.status).send(result);
+    });
+});
+
+router.post('/changePassword', authenticateToken, async (req, res) => {
+    const user = req.body;
+    await UserController.changePassword(user).then((result) => {
         res.status(result.status).send(result);
     });
 });

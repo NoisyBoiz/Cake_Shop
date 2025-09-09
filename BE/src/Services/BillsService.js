@@ -16,8 +16,8 @@ const cakes = Cakes(sequelize);
 const cakeSizes = CakeSizes(sequelize);
 const cakeImages = CakeImages(sequelize);
 
-clients.hasMany(bills, {foreignKey: 'id_client'});
-bills.belongsTo(clients, {foreignKey: 'id_client'});
+clients.hasMany(bills, {foreignKey: 'id_user'});
+bills.belongsTo(clients, {foreignKey: 'id_user'});
 bills.hasMany(orders, {foreignKey: 'id_bill'});
 orders.belongsTo(bills, {foreignKey: 'id_bill'});
 
@@ -81,10 +81,10 @@ const BillsService = {
     },
 
     
-    getDetailBillByIdClient: (id_client) => {
+    getDetailBillByIdUser: (id_user) => {
         const result = bills.findAll({  
             where: {
-                id_client: id_client
+                id_user: id_user
             },
             include: [
                 {model: clients, attributes: ['name', 'phone_number', 'address', 'email']}, 
@@ -154,7 +154,7 @@ const BillsService = {
 
     updateBill: (bill) => { 
         let newBill = {
-            id_client: bill.id_client,
+            id_user: bill.id_user,
             notice: bill.notice,
             delivery_date: bill.delivery_date,
             status: bill.status

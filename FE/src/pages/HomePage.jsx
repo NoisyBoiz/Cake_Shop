@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import ProductsContainer from "./ProductsContainer";
+import ProductsContainer from "../components/ProductsContainer";
 import '../assets/styles/product.css';
 import '../assets/styles/homepage.css';
 import { Link, useParams } from 'react-router-dom';

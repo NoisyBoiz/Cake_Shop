@@ -1,5 +1,3 @@
-import { Fragment } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { useState } from "react";
 import "../assets/styles/product.css";
 

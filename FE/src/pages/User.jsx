@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../assets/styles/user.css";
-import Notification from './notication';
+import Notification from '../components/notication';
 import { changeInfor, changePassword } from "../services/client";
-import Load from './Load';
+import Load from '../components/Load';
 
 const notification = new Notification();
-
 
 function User() {
     const [load, setLoad] = useState(false);

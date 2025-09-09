@@ -16,6 +16,6 @@ export async function getBillById(id_bill) {
     return await axios.get("http://localhost:3000/bills/getById?id="+id_bill);
 }
 
-export async function getBillByClient(id_client) {
-    return await axios.get("http://localhost:3000/bills/getDetailBillByIdClient?id="+id_client);
+export async function getBillByClient(id_user) {
+    return await axios.get("http://localhost:3000/bills/getDetailBillByIdUser?id="+id_user);
 }

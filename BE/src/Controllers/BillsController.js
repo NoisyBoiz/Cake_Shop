@@ -1,7 +1,6 @@
 import BillsService from "../Services/BillsService.js";    
 import OrdersService from "../Services/OrdersService.js";
-import ClientsService from "../Services/ClientsService.js";
-import CakeSizesService from "../Services/CakeSizesService.js";
+import UserService from "../Services/UserService.js";
 import responseObj from '../ResponseObj/index.js';
 import CakesService from "../Services/CakesService.js";
 import Valid from "../Utils/Valid.js";
@@ -22,8 +21,8 @@ const BillsController = {
         return responseObj(200, "Success", detailBill);
     },
 
-    getDetailBillByIdClient: async (id_client) => {
-        const detailBill = await BillsService.getDetailBillByIdClient(id_client);
+    getDetailBillByIdUser: async (id_user) => {
+        const detailBill = await BillsService.getDetailBillByIdUser(id_user);
         return responseObj(200, "Success", detailBill);
     },
 
@@ -39,9 +38,9 @@ const BillsController = {
 
     createTotal: async (total) => {
         console.log(total);
-        if(Valid.isEmpty(total.id_client)) return responseObj(400, "Client is required", null);
-        if(!Valid.isNumber(total.id_client)) return responseObj(400, "Client is invalid", null);
-        if(!await ClientsService.existById(total.id_client)) return responseObj(400, "Client is not exist", null);
+        if(Valid.isEmpty(total.id_user)) return responseObj(400, "Client is required", null);
+        if(!Valid.isNumber(total.id_user)) return responseObj(400, "Client is invalid", null);
+        if(!await UserService.existById(total.id_user)) return responseObj(400, "Client is not exist", null);
 
         if(Valid.isEmpty(total.delivery_date)) return responseObj(400, "Delivery date is required", null);
         else{
@@ -64,7 +63,7 @@ const BillsController = {
 
         // create bill
         let bill = {
-            id_client: total.id_client,
+            id_user: total.id_user,
             notice: total.notice,
             delivery_date: total.delivery_date,
             created_at: new Date(),
@@ -89,9 +88,9 @@ const BillsController = {
     },
 
     createBill: async (bill) => {
-        if(Valid.isEmpty(bill.id_client)) return responseObj(400, "Client is required", null);
-        if(!Valid.isNumber(bill.id_client)) return responseObj(400, "Client is invalid", null);
-        if(!await ClientsService.existById(bill.id_client)) return responseObj(400, "Client is not exist", null);
+        if(Valid.isEmpty(bill.id_user)) return responseObj(400, "Client is required", null);
+        if(!Valid.isNumber(bill.id_user)) return responseObj(400, "Client is invalid", null);
+        if(!await UserService.existById(bill.id_user)) return responseObj(400, "Client is not exist", null);
 
         if(Valid.isEmpty(bill.delivery_date)) return responseObj(400, "Delivery date is required", null);
         else{
@@ -101,7 +100,7 @@ const BillsController = {
         }
         try{
             let data = {
-                id_client: bill.id_client,
+                id_user: bill.id_user,
                 notice: bill.notice,
                 delivery_date: bill.delivery_date,
                 created_at: new Date(),
@@ -118,9 +117,9 @@ const BillsController = {
     updateBill: async (bill) => {
         if(!await BillsService.existById(bill.id)) return responseObj(400, "Bill is not exist", null);
         
-        if(Valid.isEmpty(bill.id_client)) return responseObj(400, "Client is required", null);
-        if(!Valid.isNumber(bill.id_client)) return responseObj(400, "Client is invalid", null);
-        if(!await ClientsService.existById(bill.id_client)) return responseObj(400, "Client is not exist", null);
+        if(Valid.isEmpty(bill.id_user)) return responseObj(400, "Client is required", null);
+        if(!Valid.isNumber(bill.id_user)) return responseObj(400, "Client is invalid", null);
+        if(!await UserService.existById(bill.id_user)) return responseObj(400, "Client is not exist", null);
 
         if(Valid.isEmpty(bill.delivery_date)) return responseObj(400, "Delivery date is required", null);
         else{
@@ -133,7 +132,7 @@ const BillsController = {
         try{
             let data = {
                 id: bill.id,
-                id_client: bill.id_client,
+                id_user: bill.id_user,
                 notice: bill.notice,
                 delivery_date: bill.delivery_date,
                 status: bill.status?true:false

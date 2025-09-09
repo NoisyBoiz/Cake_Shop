@@ -95,7 +95,7 @@ function Bill(){
                                 return(
                                     <ul key={index} className="list-row list-row-bill"> 
                                         <li> {item.id} </li>
-                                        <li> {item.id_client} </li>
+                                        <li> {item.id_user} </li>
                                         <li> {item.notice} </li>
                                         <li> {formatTime(item.delivery_date)} </li>
                                         <li> {formatTime(item.created_at)} </li>

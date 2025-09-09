@@ -1,14 +1,16 @@
 import express from 'express';
 import CakesRouter from './routes/cakesRouter.js';
-import ClientRouter from './Routes/ClientsRouter.js';
+import UserRouter from './Routes/UserRouter.js';
 import BillsRouter from './routes/billsRouter.js';
 import OrdersRouter from './routes/ordersRouter.js';
 import TypesRouter from './Routes/TypesRouter.js';
-import AdminRouter from './Routes/AdminsRouter.js';
 import cors from 'cors';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors({
     origin: 'http://localhost:5173'
@@ -29,8 +31,7 @@ app.options("/", (req, res) => {
 app.use(express.json());
 
 app.use("/cakes", CakesRouter);
-app.use("/clients", ClientRouter);
-app.use("/admins", AdminRouter);
+app.use("/users", UserRouter);
 app.use("/bills", BillsRouter);
 app.use("/orders", OrdersRouter);
 app.use("/types", TypesRouter);

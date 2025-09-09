@@ -32,17 +32,16 @@ const ProductsContainer = () => {
     },[])
   return (
     <>
-    <Cart openCart={openCart} changeCart={changeCart} handleIsCart={handleIsCart}/>
-    <div className="category__cake">
-        {
-            types.length !==0 && 
-            types.map((type,i) =>(
-                  <Products handleOpenCart={handleOpenCart} type={type} key={i} />
-                )
-            )
-        }
-    </div>
-    
+      <Cart openCart={openCart} changeCart={changeCart} handleIsCart={handleIsCart}/>
+      <div className="category__cake">
+          {
+              types.length !==0 && 
+              types.map((type,i) =>(
+                    <Products handleOpenCart={handleOpenCart} type={type} key={i} />
+                  )
+              )
+          }
+      </div>
     </>
     
   )
