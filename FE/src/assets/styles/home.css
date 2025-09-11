@@ -1,0 +1,65 @@
+#main-home button{
+	border-color: white;
+	background-color: var(--primary-color);
+}
+
+#intro{
+	background-image: url("src/assets/images/backgroundcake.jpg");
+	height: 80vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+
+/* Section nền trong suốt và có hiệu ứng */
+.winter-sale-section {
+  padding: 80px 0;
+  backdrop-filter: blur(0px); /* hiệu ứng kính mờ */
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+
+/* Container nội dung luôn nằm trên */
+.winter-sale-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Tiêu đề nổi bật */
+.winter-sale-section h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+/* Badge giảm giá */
+.winter-sale-section .badge {
+  font-size: 1.25rem;
+  padding: 10px 15px;
+  border-radius: 12px;
+}
+
+/* Mô tả ở giữa và giới hạn chiều rộng */
+.sale-description {
+  max-width: 600px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: black;
+}
+
+/* Nút Shop now */
+.winter-sale-section button {
+  transition: all 0.3s ease;
+  font-weight: 600;
+  border-radius: 10px;
+  background-color: var(--primary-color);
+}
+
+.winter-sale-section button:hover {
+  transform: translateY(-3px);
+  background-color: var(--primary-color);
+}
+

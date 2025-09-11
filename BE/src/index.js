@@ -1,41 +1,38 @@
-import express from 'express';
-import CakesRouter from './routes/cakesRouter.js';
-import UserRouter from './Routes/UserRouter.js';
-import BillsRouter from './routes/billsRouter.js';
-import OrdersRouter from './routes/ordersRouter.js';
-import TypesRouter from './Routes/TypesRouter.js';
-import cors from 'cors';
-
 import dotenv from 'dotenv';
 dotenv.config();
+
+import express from 'express';
+import cors from 'cors';
+
+import CakeRouter from './Routes/cakeRouter.js';
+import UserRouter from './Routes/userRouter.js';
+import OrderRouter from './Routes/orderRouter.js';
+import CategoryRouter from './Routes/categoryRouter.js';
+import CartRouter from './Routes/cartRouter.js';
+import { connectDB } from './Config/index.js';
+
+(async () => {
+  await connectDB();
+})();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors({
-    origin: 'http://localhost:5173'
-}));
-  
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
-    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    next();
-})
-app.options("/", (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
-    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    res.sendStatus(204);
-});
 app.use(express.json());
 
-app.use("/cakes", CakesRouter);
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
+
+app.use("/cakes", CakeRouter);
 app.use("/users", UserRouter);
-app.use("/bills", BillsRouter);
-app.use("/orders", OrdersRouter);
-app.use("/types", TypesRouter);
+app.use("/orders", OrderRouter);
+app.use("/categories", CategoryRouter);
+app.use("/carts", CartRouter);
 
 app.listen(PORT, () => {
-    console.log('Example app listening on port 3000!');
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });

@@ -1,111 +1,165 @@
-import { useState } from "react";
-import "../assets/styles/product.css";
+import React, { useState } from "react";
+import { Card } from 'react-bootstrap';
+import { addToCart } from "../services/carts.js"
+import { useNotification } from '../components/Notification';
 
-const ProductItem = ({cake,handleAddToCart}) => {
-    let min = 1;
-    let max = 10;
-    const [quantity, setQuantity] = useState(min);
-    const [disMin, setDisMin] = useState(true);
-    const [disMax, setDisMax] = useState(false);
-    const [indexSize,setIndexSize] = useState(0);
-    // const [cart,setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
-    
-    
-    // const handleAddToCart = () => {
-    //     console.log(cart);
-    //     const relCake = cake;
-    //     relCake["quantity"] = quantity;
-    //     relCake["moreInfo"] = cake.list_size[indexSize];
-    //     console.log(relCake);
-    //     cart.push(relCake);
-    //     localStorage.setItem("cart",JSON.stringify(cart));
-    //  }
+const ProductItem = ({ cake }) => {
+  const min = 1;
+  const max = 10;
+  const [quantity, setQuantity] = useState(min);
+  const [indexSize, setIndexSize] = useState(0);
+  const { showNotification } = useNotification();
 
-    const handleInputChange = (e) => {
-      let newQuantity = parseInt(e.target.value);
-      if (isNaN(newQuantity) || newQuantity < min) {
-        newQuantity = min;
-      } else if (newQuantity > max) {
-        newQuantity = max;
-      }
-      setQuantity(newQuantity);
+  const handleAddToCart = () => {
+    const data = {
+      id_cake: cake.id,
+      id_size: cake.Sizes[indexSize].id,
+      quantity,
     };
-  
-    const handleCountClick = (operator) => {
-      let newQuantity;
-      if (operator === 'add') {
-        newQuantity = quantity + 1;
-        setDisMin(false);
-        if (newQuantity >= max) {
-          newQuantity = max;
-          setDisMax(true);
-        }else{
-            setDisMax(false);
-        }
-      } else {
-        newQuantity = quantity - 1;
-        setDisMax(false);
-        if (newQuantity <= min) {
-          newQuantity = min;
-          setDisMin(true);
-        }else{
-            setDisMin(false);
-        }
+    addToCart(data).then(res => {
+      if (res && res.status === 200) {
+        showNotification({
+          title: "Thông báo",
+          message: "Thêm vào giỏ hàng thành công!",
+          type: "success"
+        });
       }
-      setQuantity(newQuantity);
-    };
+    }).catch((err) => {
+      if (err?.response?.status == '401') {
+        showNotification({
+          title: "Thông báo",
+          message: "Vui lòng đăng nhập để thực hiện chức năng này!",
+          handleAccept: () => { window.location.href = "/login" },
+          handleCancel: () => {},
+          titleAccept: "Đăng nhập",
+          titleCancel: "Đóng",
+          type: "warning"
+        });
+      }
+      else {
+        showNotification({
+          title: "Lỗi",
+          message: "Đã có lỗi xảy ra. Vui lòng thử lại sau.",
+          type: "error"
+        });
+      }
+    })
+  }
+
+  const updateQuantity = (newQuantity) => {
+    if (isNaN(newQuantity) || newQuantity < min) {
+      newQuantity = min;
+    } else if (newQuantity > max) {
+      newQuantity = max;
+    }
+    setQuantity(newQuantity);
+  };
 
   return (
-    <div className="product__body">
-        <div className="product__body--content">
-            <div className="product__image">
-                <img className="image__cake" src={cake.list_image[0].image} alt="" />
-            </div>
-            <div className="product__content">
-                <h3 className="product__title">{cake.name}</h3>
-                <div className="product__description">{cake.description}</div>
-            </div>
-            <div className="product__content">
-                <div>
-                    <span className="product__price">Giá: 
-                    {cake.list_size[indexSize].old_price !== null && (<span className="product__old--price">{cake.list_size[indexSize].old_price} VND</span>)} 
-                    {cake.list_size[indexSize].price} VND</span>
-                    <div className="product__size">
-                        <h3>Kích thước</h3>
-                        <div className="product__size--info">
-                            {cake.list_size.map((size,i)=>  (<div className={indexSize === i ? "active__size" : ""} key={i}
-                                onClick={() => setIndexSize(i)}
-                            >{size.size}</div>)
-                            )}
-                        </div>
-                    </div>
-                    <div className="qty-input">
-                        <div id={disMin ? "dis__min" : "" } className="qty-count qty-count--minus" onClick={() => handleCountClick('subtract')}>
-                            -</div>
-                        <input
-                        className="product-qty"
-                        type="number"
-                        value={quantity}
-                        min={min}
-                        max={max}
-                        onChange={handleInputChange}
-                        />
-                        <div id={disMax ? "dis__max" : "" } className="qty-count qty-count--add" onClick={() => handleCountClick('add')}>+</div>
-                        </div>
-                    <div className="btn__add--cart">
-                        <button className="btn__cart" onClick={()=> handleAddToCart(
-                            cake,
-                            quantity,
-                            cake.list_size[indexSize]
-                        )}>Thêm vào giỏ hàng</button>
-                    </div>
+    <Card
+      className="mb-4 border-0 rounded-4 product-card h-100"
+      style={{
+        boxShadow: "0 0 00.6rem 0 rgba(0,0,0,0.2)"
+      }}
+    >
+      {/* Ảnh sản phẩm */}
+      <div className="d-flex justify-content-center align-items-center pt-3">
+        <Card.Img
+          variant="top"
+          src={cake?.Images[0]?.path}
+          alt={cake.name}
+          className="rounded-3"
+          style={{
+            height: '200px',
+            width: "90%",
+            objectFit: 'cover',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+          }}
+        />
+      </div>
 
-                </div>
-            </div>
+      <Card.Body className="d-flex flex-column">
+        {/* Tên bánh */}
+        <Card.Title className="fw-semibold text-center text-dark mb-2">
+          {cake.name}
+        </Card.Title>
+
+        <Card.Text className="cake-description" style={{ margin: "0 0 0.5rem 0" }}>
+          {cake.description}
+        </Card.Text>
+
+        <div className="mt-auto">
+          <span className="py-0 fw-bold" style={{ color: "var(--primary-color)" }}>
+            {(cake?.Sizes[indexSize].origin_price * (1 - (cake?.Sizes[indexSize].discount || 0))).toLocaleString()} VND
+          </span>
+          {cake?.Sizes[indexSize].origin_price !== null && (
+            <span
+              text="dark"
+              className="me-2 text-decoration-line-through px-2 py-1"
+              style={{ fontSize: '0.9rem' }}
+            >
+              {cake?.Sizes[indexSize].origin_price.toLocaleString()} VND
+            </span>
+          )}
         </div>
-    </div>
-   
-  )
-}
 
-export default ProductItem
+        {/* Kích thước */}
+        <div className="mb-2">
+          <div className="fw-semibold mb-2">Kích thước</div>
+          <div className="d-flex gap-2 flex-wrap justify-content-center">
+            {cake?.Sizes.map((size, i) => (
+              <button
+                key={i} className={`button-size ${indexSize === i ? "active" : ""}`}
+                onClick={() => setIndexSize(i)}
+              >
+                {size.size}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Số lượng */}
+        <div className="mb-2">
+          <div className="fw-semibold mb-2">Số lượng</div>
+          <div className="quantity-group mx-auto">
+            <button
+              className="quantity-btn"
+              onClick={() => updateQuantity(quantity - 1)}
+              disabled={quantity <= min}
+            >
+              −
+            </button>
+
+            <input
+              type="number"
+              value={quantity}
+              min={min}
+              max={max}
+              onChange={(e) => updateQuantity(parseInt(e.target.value))}
+              className="quantity-input text-center"
+            />
+
+            <button
+              className="quantity-btn"
+              onClick={() => updateQuantity(quantity + 1)}
+              disabled={quantity >= max}
+            >
+              +
+            </button>
+          </div>
+        </div>
+
+
+        {/* Nút thêm giỏ hàng */}
+        <button
+          className="w-100 fw-bold mt-1 button-add-cart"
+          onClick={handleAddToCart}
+        >
+          Thêm vào giỏ hàng
+        </button>
+      </Card.Body>
+    </Card>
+  );
+};
+
+export default ProductItem;

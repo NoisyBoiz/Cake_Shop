@@ -1,27 +1,33 @@
-import {DataTypes} from 'sequelize';
+import { DataTypes } from 'sequelize';
+import { sequelize } from '../Config/index.js';
 
-export const Orders = (sequelize) => sequelize.define('Orders',{
+const Orders = sequelize.define('Orders', {
     id: {
         type: DataTypes.BIGINT,
         autoIncrement: true,
         primaryKey: true
     },
-    id_cake: {
+    id_user: {
         type: DataTypes.BIGINT,
-        primaryKey: true
+        allowNull: false
     },
-    size: {
+    notice: {
         type: DataTypes.STRING,
+        allowNull: true
+    },
+    delivery_date: {
+        type: DataTypes.TIME,
         allowNull: false
     },
-    id_bill: {
-        type: DataTypes.BIGINT,
+    status: {
+        type: DataTypes.ENUM('pending', 'completed', 'delivered', 'canceled'),
+        defaultValue: 'pending',
         allowNull: false
-    },
-    quantity: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
+    }
 },{
-    timestamps: false
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
 });
+
+export default Orders;

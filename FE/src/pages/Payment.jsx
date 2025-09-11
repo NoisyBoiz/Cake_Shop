@@ -1,33 +1,29 @@
 import React, { Fragment } from 'react'
 import '../assets/styles/payment.css';
 import { useState } from "react";
-import  { createTotalBill } from "../services/bill";
+import  { createOrder } from "../services/orders";
 import { useEffect } from 'react';
-import Notification from '../components/notication';
+import { useNotification } from '../components/Notification';
 import Load from '../components/Load';
-
-
-const notication = new Notification();
 
 const Payment = () => {
 
   const [user, setUser] = useState(null);
   const [send, setSend] = useState(false);
+  const { showNotification } = useNotification();
 
   useEffect(() => {
     let user = localStorage.getItem("user");
     if(user === null) {
-      notication.warning({
+      showNotification({
         title: "Thông báo",
         message: "Vui lòng đăng nhập để thực hiện mua hàng!",
         handleAccept: () => {window.location.href = "/login"},
         handleCancel: () => {window.location.href = "/"},
         titleAccept: "Đăng nhập",
         titleCancel: "Trở về trang chủ"
-      }
-      );
-    }
-    else{
+      });
+    } else {
       setUser(JSON.parse(user));
     }
   }, []);
@@ -60,7 +56,7 @@ const Payment = () => {
 
       data.list_order = list_order;
 
-      createTotalBill(data).then((response) => {
+      createOrder(data).then((response) => {
         if (response.data.status === 200) {
           localStorage.removeItem("cart");
           notication.comfirm({

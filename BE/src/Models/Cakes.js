@@ -1,6 +1,7 @@
-import {DataTypes} from 'sequelize';
+import { DataTypes } from 'sequelize';
+import { sequelize } from '../Config/index.js';
 
-export const Cakes = (sequelize) => sequelize.define('Cakes',{
+const Cakes = sequelize.define('Cakes', {
     id: {
         type: DataTypes.BIGINT,
         autoIncrement: true,
@@ -14,10 +15,14 @@ export const Cakes = (sequelize) => sequelize.define('Cakes',{
         type: DataTypes.STRING,
         allowNull: false
     },
-    id_type: {
+    id_category: {
         type: DataTypes.BIGINT,
         allowNull: false
     },
 },{
-    timestamps: false
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at' 
 });
+
+export default Cakes;

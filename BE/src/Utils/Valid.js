@@ -32,6 +32,10 @@ const Valid = {
         const numberPattern = /[0-9]/i;
         return numberPattern.test(number);
     },
+    isPositiveNumber: (number) => {
+        const numberPattern = /[0-9]/i;
+        return numberPattern.test(number) && number > 0;
+    },
 
     isNotice: (notice) => {
         const noticePattern = /[a-zA-Z0-9]/i;
@@ -41,7 +45,6 @@ const Valid = {
         const stringPattern = /[a-zA-Z]/i;
         return stringPattern.test(string);
     }
-
 }
 
 export default Valid;

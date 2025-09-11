@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import "../assets/styles/login.css";
-import {loginClient} from "../services/client.js";
+import {login} from "../services/users.js";
 import { Link } from "react-router-dom";
 
-function login(){
+function Login(){
     const localStorage = window.localStorage;
     const [message, setMessage] = useState("");
 
     const submit = () => {
-        const email = document.querySelector("input[name='email']").value;
+        const username = document.querySelector("input[name='username']").value;
         const password = document.querySelector("input[name='password']").value;
-        if(email == "") return setMessage("Email không được để trống");
+        if(username == "") return setMessage("Email không được để trống");
         if(password == "") return setMessage("Password không được để trống");
-        loginClient({email, password}).then(rs=>{
+        login({username, password}).then(rs=>{
             if(rs.data.status===200) {
-                localStorage.setItem("user",JSON.stringify(rs.data.data));
                 window.location.href = "/";
             }
             else{
@@ -30,8 +29,8 @@ function login(){
                 <div className="login-form">
                     <h1 className="login-label"> Đăng nhập </h1>
                     <div className="form-group">
-                        <label> Email </label>
-                        <input type="text" placeholder="Email" className="form-control" name="email"/>
+                        <label> Tên đăng nhập </label>
+                        <input type="text" placeholder="Tên đăng nhập" className="form-control" name="username"/>
                     </div>
                     <div className="form-group">
                         <label> Mật khẩu </label>
@@ -49,4 +48,4 @@ function login(){
     )
 }
 
-export default login;
+export default Login;

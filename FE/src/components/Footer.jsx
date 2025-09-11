@@ -1,48 +1,47 @@
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+
 function Footer() {
   return (
-    <div id="footer" className="footer">
-      <div id="footer1" className="footer__container">
-          <div className="footer__content">
-          <div className="footer__content--body">
-            <div className="footer__content--title">Sản phẩm</div>
-            <div>
-              <div>Bánh sinh nhật</div>
-              <div>Bánh kem</div>
-              <div>Bánh cake</div>
-            </div>
-          </div>
-          <div className="footer__content--body">
-            <div className="footer__content--title">Công ty</div>
-            <div>
-              <div>Dứa tuyển dụng</div>
-              <div>Liên hệ nhượng quyền</div>
-              <div>Về Cakes</div>
-            </div>
-          </div>
-          <div className="footer__content--body">
-            <div className="footer__content--title">Hỗ trợ</div>
-            <div>
-              <div>FAQs</div>
-              <div>Bảo mật thông tin</div>
-              <div>Chính sách chung</div>
-              <div>Tra cứu đơn hàng</div>
-            </div>
-          </div>
-          <div className="footer__content--body">
-            <div className="footer__content--title">Liên Hệ</div>
-            <div>
-              <div>Email góp ý</div>
-              <div>Hotline</div>
-              <div>0982983423</div>
-            </div>
-          </div>
-        </div>
-        <div className="vertical"></div>
-        <div className="footer__detail">Copyright © 2024 Cakes. All rights reserved.</div>
-      </div>
-      
-    </div>
-  )
+    <footer id="footer" className="border-top py-5" style={{backgroundColor: 'var(--gray-color)'}}>
+      <Container style={{ backgroundColor: 'rgba(0,0,0,0)'}}>
+        <Row className="text-center text-md-start" style={{color: "white"}}>
+          <Col md={3} xs={6} className="mb-4 mb-md-0">
+            <h5 className="mb-3 fw-bold">Sản phẩm</h5>
+            <ul className="list-unstyled">
+              <li>Bánh ngọt</li>
+              <li>Bánh kem</li>
+              <li>Bánh xốp</li>
+            </ul>
+          </Col>
+          <Col md={3} xs={6} className="mb-4 mb-md-0">
+            <h5 className="mb-3 fw-bold">Công ty</h5>
+            <ul className="list-unstyled">
+              <li>Tuyển dụng</li>
+              <li>Nhượng quyền</li>
+              <li>Về Cakes</li>
+            </ul>
+          </Col>
+          <Col md={3} xs={6} className="mb-4 mb-md-0">
+            <h5 className="mb-3 fw-bold">Hỗ trợ</h5>
+            <ul className="list-unstyled">
+              <li>FAQs</li>
+              <li>Bảo mật</li>
+              <li>Đơn hàng</li>
+            </ul>
+          </Col>
+          <Col md={3} xs={6} className="mb-4 mb-md-0">
+            <h5 className="mb-3 fw-bold">Liên Hệ</h5>
+            <ul className="list-unstyled">
+              <li>Email góp ý</li>
+              <li>Hotline</li>
+              <li>0982983423</li>
+            </ul>
+          </Col>
+        </Row>
+      </Container>
+    </footer>
+  );
 }
 
 export default Footer;

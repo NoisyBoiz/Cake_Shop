@@ -1,8 +1,6 @@
 import jwt from 'jsonwebtoken';
 const JWT_SECRET = process.env.JWT_SECRET || "NOISYBOY";
 
-
-// Middleware xác thực JWT
 export function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
@@ -14,7 +12,6 @@ export function authenticateToken(req, res, next) {
     });
 }
 
-// Middleware kiểm tra role
 export function authorizeRole(role) {
     return function (req, res, next) {
         if (!req.user || req.user.role !== role) {

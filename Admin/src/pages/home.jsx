@@ -60,7 +60,7 @@ function Home() {
             {bestSeller!=null?
                 <div className="best-seller">
                     <h1> Bán chạy nhất </h1>
-                    <div class="best-seller-infor">
+                    <div className="best-seller-infor">
                         <img src={bestSeller.data.list_image[0].image} alt="best seller" />
                         <div>
                             <h2> {bestSeller.data.name} </h2>

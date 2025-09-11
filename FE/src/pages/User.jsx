@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "../assets/styles/user.css";
-import Notification from '../components/notication';
-import { changeInfor, changePassword } from "../services/client";
+import { useNotification } from '../components/Notification';
+import { changeInfor, changePassword } from "../services/users";
 import Load from '../components/Load';
-
-const notification = new Notification();
 
 function User() {
     const [load, setLoad] = useState(false);
     const [state, setState] = useState("show");
     const [user, setUser] = useState({});
     const localStorage = window.localStorage;
+    const { showNotification } = useNotification();
     
     useEffect(() => {
         let user = localStorage.getItem("user");
         if (user !== null)
             setUser(JSON.parse(user));
         else{
-            window.location.href = "/homepage";
+            window.location.href = "/home";
         }
     }, []);
 
@@ -27,7 +26,7 @@ function User() {
         const address = document.querySelector("input[name='address']").value;
         const password = document.querySelector("input[name='password']").value;
         if(name === "" || phone_number === "" || address === "" || password === ""){
-            notification.error({
+            showNotification({
                 title: "Thông báo",
                 message: "Vui lòng điền đầy đủ thông tin",
             });
@@ -44,7 +43,7 @@ function User() {
         setLoad(true);
         changeInfor(data).then((res) => {
             if(res.status === 200){
-                notification.success({
+                showNotification({
                     title: "Thông báo",
                     message: "Cập nhật thông tin thành công",
                 });

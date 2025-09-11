@@ -1,31 +1,29 @@
 import React, { useState } from 'react';
 import "../assets/styles/login.css";
-import {registerClient} from "../services/client.js";
+import { register } from '../services/users';
 import { Link } from "react-router-dom";
 
-function register(){
+function Register(){
     const localStorage = window.localStorage;
     const [message, setMessage] = useState("");
 
     const submit = () => {
-        const name = document.querySelector("input[name='name']").value;
-        const email = document.querySelector("input[name='email']").value;
+        const name = document.querySelector("input[name='fullname']").value;
+        const username = document.querySelector("input[name='username']").value;
         const phone_number = document.querySelector("input[name='phone']").value;
         const address = document.querySelector("input[name='address']").value;
         const password = document.querySelector("input[name='password']").value;
         const comfirmPassword = document.querySelector("input[name='comfirm-password']").value;
         if(name == "") return setMessage("Tên không được để trống");
-        if(email == "") return setMessage("Email không được để trống");
+        if(username == "") return setMessage("Email không được để trống");
         if(phone_number == "") return setMessage("Số điện thoại không được để trống");
         if(address == "") return setMessage("Địa chỉ không được để trống");
         if(password == "") return setMessage("Password không được để trống");
         if(comfirmPassword == "") return setMessage("Xác nhận mật khẩu không được để trống");
         if(password !== comfirmPassword) return setMessage("Mật khẩu không trùng khớp");
 
-        registerClient({name,email,phone_number,address,password}).then(rs=>{
+        register({name,username,phone_number,address,password}).then(rs=>{
             if(rs.data.status===200) {
-                console.log(rs.data.data);
-                localStorage.setItem("user",JSON.stringify(rs.data.data));
                 window.location.href = "/login";
             }
             else{
@@ -45,11 +43,11 @@ function register(){
                     <h1> Đăng ký </h1>
                     <div className="form-group">
                         <label> Tên </label>
-                        <input type="text" placeholder="Nhập tên" className="form-control" name="name"/>
+                        <input type="text" placeholder="Nhập tên" className="form-control" name="fullname"/>
                     </div>
                     <div className="form-group">
-                        <label> Email </label>
-                        <input type="text" placeholder="Email" className="form-control" name="email"/>
+                        <label> Tên đăng nhập </label>
+                        <input type="text" placeholder="Tên đăng nhập" className="form-control" name="username"/>
                     </div>
                     <div className="form-group">
                         <label> Số điện thoại </label>
@@ -77,4 +75,4 @@ function register(){
     )
 }
 
-export default register;
+export default Register;
